@@ -77,8 +77,8 @@ namespace Gyms.API.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Date = table.Column<DateOnly>(type: "date", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Day = table.Column<int>(type: "int", nullable: false),
                     Time = table.Column<TimeOnly>(type: "time", nullable: false),
                     Duration = table.Column<TimeSpan>(type: "time", nullable: false),

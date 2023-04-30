@@ -21,9 +21,11 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddScoped<IClubsRepository, ClubsRepository>();
 builder.Services.AddScoped<IOpeningHoursRepository, OpeningHoursRepository>();
 builder.Services.AddScoped<ICoachesRepository, CoachesRepository>();
+builder.Services.AddScoped<IEventsRepository, EventsRepository>();
 
 builder.Services.AddScoped<CoachesService>();
 builder.Services.AddScoped<ClubsService>();
+builder.Services.AddScoped<EventsService>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore

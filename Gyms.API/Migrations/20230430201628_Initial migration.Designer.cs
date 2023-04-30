@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gyms.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230430143914_Initial migration")]
+    [Migration("20230430201628_Initial migration")]
     partial class Initialmigration
     {
         /// <inheritdoc />
@@ -91,8 +91,8 @@ namespace Gyms.API.Migrations
                     b.Property<int>("CoachId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
 
                     b.Property<int>("Day")
                         .HasColumnType("int");
@@ -113,6 +113,7 @@ namespace Gyms.API.Migrations
                         .HasColumnType("time");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 

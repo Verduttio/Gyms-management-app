@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using NodaTime;
+using Gyms.API.Models.Requests;
 
 namespace Gyms.API.Models.Entities
 {
@@ -12,10 +13,10 @@ namespace Gyms.API.Models.Entities
         public int Id { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
+        public DateOnly Date { get; set; }
 
         [MaxLength(50)]
-        public string? Title { get; set; } = "";
+        public string Title { get; set; } = "";
 
         [Required]
         public DayOfWeek Day { get; set; }
@@ -44,5 +45,22 @@ namespace Gyms.API.Models.Entities
         public int ParticipantsNumber { get; set; } = 0;
 
         public bool Cancelled { get; set; } = false;
+
+        public Event() { }
+
+        public Event(EventRequest eventRequest)
+        {
+            Date = DateOnly.Parse(eventRequest.Date);
+            Title = eventRequest.Title;
+            Day = eventRequest.Day;
+            Time = TimeOnly.Parse(eventRequest.Time);
+            Duration = TimeSpan.Parse(eventRequest.Duration);
+            ClubId = eventRequest.ClubId;
+            CoachId = eventRequest.CoachId;
+            ParticipantsLimit = eventRequest.ParticipantsLimit;
+            Regular = eventRequest.Regular;
+            ParticipantsNumber = eventRequest.ParticipantsNumber;
+            Cancelled = eventRequest.Cancelled;
+        }
     }
 }
