@@ -1,4 +1,7 @@
 using Gyms.API.Data;
+using Gyms.API.Repositories;
+using Gyms.API.Repositories.Interfaces;
+using Gyms.API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +17,14 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SQLAuth"),
     x => x.UseDateOnlyTimeOnly())
     );
+
+builder.Services.AddScoped<IClubsRepository, ClubsRepository>();
+builder.Services.AddScoped<IOpeningHoursRepository, OpeningHoursRepository>();
+builder.Services.AddScoped<ClubsService>();
+
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 
 var app = builder.Build();
 

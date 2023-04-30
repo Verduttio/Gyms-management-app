@@ -22,7 +22,7 @@ namespace Gyms.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Gyms.API.Entities.Club", b =>
+            modelBuilder.Entity("Gyms.API.Models.Entities.Club", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -40,18 +40,12 @@ namespace Gyms.API.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("OpeningHoursId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("OpeningHoursId")
-                        .IsUnique();
 
                     b.ToTable("Clubs");
                 });
 
-            modelBuilder.Entity("Gyms.API.Entities.Coach", b =>
+            modelBuilder.Entity("Gyms.API.Models.Entities.Coach", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,7 +71,7 @@ namespace Gyms.API.Migrations
                     b.ToTable("Coaches");
                 });
 
-            modelBuilder.Entity("Gyms.API.Entities.Event", b =>
+            modelBuilder.Entity("Gyms.API.Models.Entities.Event", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -128,13 +122,10 @@ namespace Gyms.API.Migrations
                     b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("Gyms.API.Entities.OpeningHours", b =>
+            modelBuilder.Entity("Gyms.API.Models.Entities.OpeningHours", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<TimeOnly>("FridayFrom")
                         .HasColumnType("time");
@@ -183,7 +174,7 @@ namespace Gyms.API.Migrations
                     b.ToTable("OpeningHours");
                 });
 
-            modelBuilder.Entity("Gyms.API.Entities.Reservation", b =>
+            modelBuilder.Entity("Gyms.API.Models.Entities.Reservation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -211,27 +202,16 @@ namespace Gyms.API.Migrations
                     b.ToTable("Reservations");
                 });
 
-            modelBuilder.Entity("Gyms.API.Entities.Club", b =>
+            modelBuilder.Entity("Gyms.API.Models.Entities.Event", b =>
                 {
-                    b.HasOne("Gyms.API.Entities.OpeningHours", "OpeningHours")
-                        .WithOne("Club")
-                        .HasForeignKey("Gyms.API.Entities.Club", "OpeningHoursId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("OpeningHours");
-                });
-
-            modelBuilder.Entity("Gyms.API.Entities.Event", b =>
-                {
-                    b.HasOne("Gyms.API.Entities.Club", "Club")
+                    b.HasOne("Gyms.API.Models.Entities.Club", "Club")
                         .WithMany("Events")
                         .HasForeignKey("ClubId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Gyms.API.Entities.Coach", "Coach")
-                        .WithMany()
+                    b.HasOne("Gyms.API.Models.Entities.Coach", "Coach")
+                        .WithMany("Events")
                         .HasForeignKey("CoachId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -241,9 +221,20 @@ namespace Gyms.API.Migrations
                     b.Navigation("Coach");
                 });
 
-            modelBuilder.Entity("Gyms.API.Entities.Reservation", b =>
+            modelBuilder.Entity("Gyms.API.Models.Entities.OpeningHours", b =>
                 {
-                    b.HasOne("Gyms.API.Entities.Event", "Event")
+                    b.HasOne("Gyms.API.Models.Entities.Club", "Club")
+                        .WithOne("OpeningHours")
+                        .HasForeignKey("Gyms.API.Models.Entities.OpeningHours", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Club");
+                });
+
+            modelBuilder.Entity("Gyms.API.Models.Entities.Reservation", b =>
+                {
+                    b.HasOne("Gyms.API.Models.Entities.Event", "Event")
                         .WithMany()
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -252,15 +243,17 @@ namespace Gyms.API.Migrations
                     b.Navigation("Event");
                 });
 
-            modelBuilder.Entity("Gyms.API.Entities.Club", b =>
+            modelBuilder.Entity("Gyms.API.Models.Entities.Club", b =>
                 {
                     b.Navigation("Events");
+
+                    b.Navigation("OpeningHours")
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("Gyms.API.Entities.OpeningHours", b =>
+            modelBuilder.Entity("Gyms.API.Models.Entities.Coach", b =>
                 {
-                    b.Navigation("Club")
-                        .IsRequired();
+                    b.Navigation("Events");
                 });
 #pragma warning restore 612, 618
         }

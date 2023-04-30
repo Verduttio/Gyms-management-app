@@ -19,6 +19,6 @@ namespace Gyms.API.Models.Entities
 
         public int YearOfBirth { get; set;  }
 
-        List<Event> Events { get; set; }
+        public virtual List<Event> Events { get; set; }
     }
 }

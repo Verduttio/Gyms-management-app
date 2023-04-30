@@ -6,11 +6,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Gyms.API.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class Initialmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Clubs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clubs", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Coaches",
                 columns: table => new
@@ -30,8 +44,7 @@ namespace Gyms.API.Migrations
                 name: "OpeningHours",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     MondayFrom = table.Column<TimeOnly>(type: "time", nullable: false),
                     MondayTo = table.Column<TimeOnly>(type: "time", nullable: false),
                     TuesdayFrom = table.Column<TimeOnly>(type: "time", nullable: false),
@@ -50,25 +63,10 @@ namespace Gyms.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OpeningHours", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Clubs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    OpeningHoursId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clubs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Clubs_OpeningHours_OpeningHoursId",
-                        column: x => x.OpeningHoursId,
-                        principalTable: "OpeningHours",
+                        name: "FK_OpeningHours_Clubs_Id",
+                        column: x => x.Id,
+                        principalTable: "Clubs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -130,11 +128,6 @@ namespace Gyms.API.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Clubs_OpeningHoursId",
-                table: "Clubs",
-                column: "OpeningHoursId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Events_ClubId",
                 table: "Events",
                 column: "ClubId");
@@ -154,6 +147,9 @@ namespace Gyms.API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "OpeningHours");
+
+            migrationBuilder.DropTable(
                 name: "Reservations");
 
             migrationBuilder.DropTable(
@@ -164,9 +160,6 @@ namespace Gyms.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Coaches");
-
-            migrationBuilder.DropTable(
-                name: "OpeningHours");
         }
     }
 }

@@ -29,12 +29,12 @@ namespace Gyms.API.Models.Entities
         [Required]
         [ForeignKey("Club")]
         public int ClubId { get; set; }
-        public Club Club { get; set; }
+        public virtual Club Club { get; set; }
 
         [Required]
         [ForeignKey("Coach")]
         public int CoachId { get; set; }
-        public Coach Coach { get; set; }   
+        public virtual Coach Coach { get; set; }   
 
         [Required]
         public int ParticipantsLimit { get; set; }

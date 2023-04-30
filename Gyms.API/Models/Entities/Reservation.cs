@@ -12,7 +12,7 @@ namespace Gyms.API.Models.Entities
         [Required]
         [ForeignKey("Event")]
         public int EventId { get; set; }
-        public Event Event { get; set; }
+        public virtual Event Event { get; set; }
 
         [Required]
         [MaxLength(50)]

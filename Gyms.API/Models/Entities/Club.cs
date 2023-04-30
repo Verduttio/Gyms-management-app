@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using Gyms.API.Data;
+using Gyms.API.Models.DTOs;
 
 namespace Gyms.API.Models.Entities
 {
@@ -18,11 +20,20 @@ namespace Gyms.API.Models.Entities
         [MaxLength(100)]
         public string? Address { get; set; }
 
-        [Required]
-        [ForeignKey("OpeningHours")]
-        public int OpeningHoursId { get; set; }
+        //[Required]
+        //[ForeignKey("OpeningHours")]
+        //public int OpeningHoursId { get; set; }
         public OpeningHours OpeningHours { get; set; }
 
         public List<Event> Events { get; set; }
+
+        public Club() { }
+
+        public Club(ClubRequest clubRequest)
+        {
+            Name = clubRequest.Name;
+            Address = clubRequest.Address;
+            OpeningHours = new OpeningHours(clubRequest.OpeningHours);
+        }
     }
 }
