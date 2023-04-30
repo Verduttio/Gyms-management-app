@@ -20,9 +20,6 @@ namespace Gyms.API.Models.Entities
         [MaxLength(100)]
         public string? Address { get; set; }
 
-        //[Required]
-        //[ForeignKey("OpeningHours")]
-        //public int OpeningHoursId { get; set; }
         public OpeningHours OpeningHours { get; set; }
 
         public List<Event> Events { get; set; }
