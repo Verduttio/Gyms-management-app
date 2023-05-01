@@ -1,6 +1,7 @@
 ﻿using Gyms.API.Models.Entities;
 using Gyms.API.Models.Requests;
 using Gyms.API.Repositories.Interfaces;
+using Gyms.API.Services.Validators;
 using NodaTime;
 
 namespace Gyms.API.Services
@@ -8,10 +9,12 @@ namespace Gyms.API.Services
     public class EventsService
     {
         private readonly IEventsRepository _eventsRepository;
+        private readonly EventsValidator _eventsValidator;
 
-        public EventsService(IEventsRepository eventsRepository)
+        public EventsService(IEventsRepository eventsRepository, EventsValidator eventsValidator)
         {
             _eventsRepository = eventsRepository;
+            _eventsValidator = eventsValidator;
         }
 
         public async Task<IEnumerable<Event>> GetEventsAsync()
@@ -24,13 +27,17 @@ namespace Gyms.API.Services
             return await _eventsRepository.GetEventAsync(id);
         }
 
-        public async Task<Event> AddEventAsync(EventRequest eventRequest)
+        public async Task<Event?> AddEventAsync(EventRequest eventRequest)
         {
             Event @event = new Event(eventRequest);
-            return await _eventsRepository.AddEventAsync(@event);
+            if(await _eventsValidator.EventInClubOpeningHours(@event.ClubId, @event.Day, @event.Time, @event.Duration))
+            {
+                return await _eventsRepository.AddEventAsync(@event);
+            }
+            return null;
         }
 
-        public async Task<Event> UpdateEventAsync(int id, EventRequest eventRequest)
+        public async Task<Event?> UpdateEventAsync(int id, EventRequest eventRequest)
         {
             Event @event = await GetEventAsync(id);
             if(@event == null)

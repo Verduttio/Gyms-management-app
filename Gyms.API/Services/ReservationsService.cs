@@ -40,7 +40,7 @@ namespace Gyms.API.Services
             
         }
 
-        public async Task<Reservation> UpdateReservationAsync(int id, ReservationRequest reservationRequest)
+        public async Task<Reservation?> UpdateReservationAsync(int id, ReservationRequest reservationRequest)
         {
             Reservation reservation = await GetReservationAsync(id);
             if(reservation == null)

@@ -31,6 +31,7 @@ builder.Services.AddScoped<EventsService>();
 builder.Services.AddScoped<ReservationsService>();
 
 builder.Services.AddScoped<ReservationsValidator>();
+builder.Services.AddScoped<EventsValidator>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore

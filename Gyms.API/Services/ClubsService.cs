@@ -41,11 +41,16 @@ namespace Gyms.API.Services
 
             club.Name = clubRequest.Name;
             club.Address = clubRequest.Address;
-            OpeningHours openingHours = await _openingHoursRepository.GetOpeningHoursAsync(club.Id);
+            OpeningHours openingHours = await GetOpeningHoursAsync(club.Id);
             OpeningHoursSetter(openingHours, clubRequest.OpeningHours);
 
             await _openingHoursRepository.UpdateOpeningHoursAsync(openingHours);
             return await _clubsRepository.UpdateClubAsync(club);
+        }
+
+        public async Task<OpeningHours> GetOpeningHoursAsync(int clubId)
+        {
+            return await _openingHoursRepository.GetOpeningHoursAsync(clubId);
         }
 
         public async Task<Club> DeleteClubAsync(int id)

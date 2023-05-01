@@ -60,5 +60,51 @@ namespace Gyms.API.Models.Entities
             SundayFrom = TimeOnly.Parse(openingHoursRequest.SundayFrom);
             SundayTo = TimeOnly.Parse(openingHoursRequest.SundayTo);
         }
+
+        public TimeOnly? GetOpeningTime(DayOfWeek dayOfWeek)
+        {
+            switch (dayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    return MondayFrom;
+                case DayOfWeek.Tuesday:
+                    return TuesdayFrom;
+                case DayOfWeek.Wednesday:
+                    return WednesdayFrom;
+                case DayOfWeek.Thursday:
+                    return ThursdayFrom;
+                case DayOfWeek.Friday:
+                    return FridayFrom;
+                case DayOfWeek.Saturday:
+                    return SaturdayFrom;
+                case DayOfWeek.Sunday:
+                    return SundayFrom;
+                default:
+                    return null;
+            }
+        }
+
+        public TimeOnly? GetClosingTime(DayOfWeek dayOfWeek)
+        {
+            switch (dayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    return MondayTo;
+                case DayOfWeek.Tuesday:
+                    return TuesdayTo;
+                case DayOfWeek.Wednesday:
+                    return WednesdayTo;
+                case DayOfWeek.Thursday:
+                    return ThursdayTo;
+                case DayOfWeek.Friday:
+                    return FridayTo;
+                case DayOfWeek.Saturday:
+                    return SaturdayTo;
+                case DayOfWeek.Sunday:
+                    return SundayTo;
+                default:
+                    return null;
+            }
+        }
     }
 }
