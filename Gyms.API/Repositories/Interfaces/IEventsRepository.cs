@@ -9,5 +9,6 @@ namespace Gyms.API.Repositories.Interfaces
         Task<Event> AddEventAsync(Event @event);
         Task<Event> UpdateEventAsync(Event @event);
         Task<Event> DeleteEventAsync(int id);
+        Task<IEnumerable<Event>> GetEventsByCoachIdAsync(int coachId);
     }
 }

@@ -41,6 +41,11 @@ namespace Gyms.API.Repositories
             return await _context.Events.ToListAsync();
         }
 
+        public async Task<IEnumerable<Event>> GetEventsByCoachIdAsync(int coachId)
+        {
+            return await _context.Events.Where(e => e.CoachId == coachId).ToListAsync();
+        }
+
         public async Task<Event> UpdateEventAsync(Event @event)
         {
             _context.Entry(@event).State = EntityState.Modified;

@@ -5,12 +5,10 @@ namespace Gyms.API.Services.Validators
     public class EventsValidator
     {
         private readonly ClubsService _clubsService;
-        private readonly CoachesService _coachesService;
 
-        public EventsValidator(ClubsService clubsService, CoachesService coachesService)
+        public EventsValidator(ClubsService clubsService)
         {
             _clubsService = clubsService;
-            _coachesService = coachesService;
         }
 
         public async Task<bool> EventInClubOpeningHours(int clubId, DayOfWeek dayOfWeek, TimeOnly time, TimeSpan duration)
@@ -33,6 +31,27 @@ namespace Gyms.API.Services.Validators
                 }
             }
             
+            return true;
+        }
+
+        public bool CoachFree(IEnumerable<Event> coachEvents, DateOnly date, TimeOnly time, TimeSpan duration)
+        {
+            foreach (Event coachEvent in coachEvents)
+            {
+                if (coachEvent.Date == date)
+                {
+                    var coachEventStartTime = coachEvent.Time;
+                    var coachEventEndTime = coachEvent.Time.Add(coachEvent.Duration);
+
+                    var newEventStartTime = time;
+                    var newEventEndTime = time.Add(duration);
+
+                    if(TimeValidator.CheckIfOverlap(coachEventStartTime, coachEventEndTime, newEventStartTime, newEventEndTime)) {
+                        return false;
+                    }
+                }
+            }
+
             return true;
         }
     }
