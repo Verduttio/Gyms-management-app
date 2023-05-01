@@ -2,6 +2,7 @@
 using Gyms.API.Models.Entities;
 using Gyms.API.Services;
 using Gyms.Models.Dtos.Requests;
+using Gyms.Models.Dtos.Responses;
 
 namespace Gyms.API.Controllers
 {
@@ -18,37 +19,44 @@ namespace Gyms.API.Controllers
 
         // GET: api/Clubs
         [HttpGet]
-        public async Task<IEnumerable<Club>> GetClubs()
+        public async Task<IEnumerable<ClubResponse>> GetClubs()
         {
-          return await _clubsService.GetClubsAsync();
+            IEnumerable<Club> clubs = await _clubsService.GetClubsAsync();
+            IEnumerable<ClubResponse> clubResponses = clubs.Select(c => c.GetClubResponse()).ToList();
+
+            return clubResponses;
         }
 
         // GET: api/Clubs/5
         [HttpGet("{id}")]
-        public async Task<Club> GetClub(int id)
+        public async Task<ClubResponse> GetClub(int id)
         {
-          return await _clubsService.GetClubAsync(id);
+            Club club = await _clubsService.GetClubAsync(id);
+            return club.GetClubResponse();
         }
 
         // PUT: api/Clubs/5
         [HttpPut("{id}")]
-        public async Task<Club> PutClub(int id, ClubRequest clubRequest)
+        public async Task<ClubResponse> PutClub(int id, ClubRequest clubRequest)
         {
-            return await _clubsService.UpdateClubAsync(id, clubRequest);
+            Club club = await _clubsService.UpdateClubAsync(id, clubRequest);
+            return club.GetClubResponse();
         }
 
         // POST: api/Clubs
         [HttpPost]
-        public async Task<Club> PostClub(ClubRequest clubRequest)
+        public async Task<ClubResponse> PostClub(ClubRequest clubRequest)
         {
-          return await _clubsService.AddClubAsync(clubRequest);
+            Club club = await _clubsService.AddClubAsync(clubRequest);
+            return club.GetClubResponse();
         }
 
         // DELETE: api/Clubs/5
         [HttpDelete("{id}")]
-        public async Task<Club> DeleteClub(int id)
+        public async Task<ClubResponse> DeleteClub(int id)
         {
-            return await _clubsService.DeleteClubAsync(id);
+            Club club = await _clubsService.DeleteClubAsync(id);
+            return club.GetClubResponse();
         }
 
     }

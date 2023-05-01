@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Gyms.API.Data;
 using Gyms.Models.Dtos.Requests;
+using Gyms.Models.Dtos.Responses;
 
 namespace Gyms.API.Models.Entities
 {
@@ -31,6 +32,15 @@ namespace Gyms.API.Models.Entities
             Name = clubRequest.Name;
             Address = clubRequest.Address;
             OpeningHours = new OpeningHours(clubRequest.OpeningHours);
+        }
+
+        public ClubResponse GetClubResponse() 
+        {
+            ClubResponse clubResponse = new ClubResponse();
+            clubResponse.Id = Id;
+            clubResponse.Name = Name;
+            clubResponse.Address = Address;
+            return clubResponse;
         }
     }
 }
