@@ -46,6 +46,36 @@ namespace Gyms.API.Services
             return await _eventsRepository.DeleteEventAsync(id);
         }
 
+        public async Task IncrementParticipantsNumber(int id)
+        {
+            Event @event = await GetEventAsync(id);
+            if(@event != null)
+            {
+                @event.ParticipantsNumber++;
+                await _eventsRepository.UpdateEventAsync(@event);
+            }
+        }
+
+        public async Task DecrementParticipantsNumber(int id)
+        {
+            Event @event = await GetEventAsync(id);
+            if(@event != null)
+            {
+                @event.ParticipantsNumber--;
+                await _eventsRepository.UpdateEventAsync(@event);
+            }
+        }
+
+        public async Task CancelEvent(int id)
+        {
+            Event @event = await GetEventAsync(id);
+            if(@event != null)
+            {
+                @event.Cancelled = true;
+                await _eventsRepository.UpdateEventAsync(@event);
+            }
+        }
+
         private void EventSetter(Event @event, EventRequest eventRequest)
         {
             @event.Date = DateOnly.Parse(eventRequest.Date);

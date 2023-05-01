@@ -2,6 +2,7 @@ using Gyms.API.Data;
 using Gyms.API.Repositories;
 using Gyms.API.Repositories.Interfaces;
 using Gyms.API.Services;
+using Gyms.API.Services.Validators;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,8 @@ builder.Services.AddScoped<CoachesService>();
 builder.Services.AddScoped<ClubsService>();
 builder.Services.AddScoped<EventsService>();
 builder.Services.AddScoped<ReservationsService>();
+
+builder.Services.AddScoped<ReservationsValidator>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
