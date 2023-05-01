@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Gyms.API.Models.Requests;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Gyms.API.Models.Entities
@@ -16,10 +17,19 @@ namespace Gyms.API.Models.Entities
 
         [Required]
         [MaxLength(50)]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string? Surname { get; set; }
+        public string Surname { get; set; }
+
+        public Reservation() { }
+
+        public Reservation(ReservationRequest reservationRequest)
+        {
+            EventId = reservationRequest.EventId;
+            Name = reservationRequest.Name;
+            Surname = reservationRequest.Surname;
+        }
     }
 }

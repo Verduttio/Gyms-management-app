@@ -7,7 +7,7 @@ namespace Gyms.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EventsController
+    public class EventsController : ControllerBase
     {
         private readonly EventsService _eventsService;
 
