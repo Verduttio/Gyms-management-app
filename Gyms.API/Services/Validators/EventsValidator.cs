@@ -5,10 +5,12 @@ namespace Gyms.API.Services.Validators
     public class EventsValidator
     {
         private readonly ClubsService _clubsService;
+        private readonly CoachesService _coachesService;
 
-        public EventsValidator(ClubsService clubsService)
+        public EventsValidator(ClubsService clubsService, CoachesService coachesService)
         {
             _clubsService = clubsService;
+            _coachesService = coachesService;
         }
 
         public async Task<bool> EventInClubOpeningHours(int clubId, DayOfWeek dayOfWeek, TimeOnly time, TimeSpan duration)
@@ -25,7 +27,7 @@ namespace Gyms.API.Services.Validators
             }
             else
             {
-                if (time < openingTime || time.Add(duration) > closingTime)
+                if (time < openingTime || time > closingTime || (closingTime - time) < duration)
                 {
                     return false;
                 }
