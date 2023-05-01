@@ -24,5 +24,31 @@ namespace Gyms.UI.Services
                 throw ex;
             }
         }
+
+        public async Task<ClubResponse> GetClub(int id)
+        {
+            try
+            {
+                var club = await _httpClient.GetFromJsonAsync<ClubResponse>($"api/Clubs/{id}");
+                return club;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<OpeningHoursResponse> GetClubOpeningHours(int clubId)
+        {
+            try
+            {
+                var openingHours = await _httpClient.GetFromJsonAsync<OpeningHoursResponse>($"api/Clubs/{clubId}/OpeningHours");
+                return openingHours;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

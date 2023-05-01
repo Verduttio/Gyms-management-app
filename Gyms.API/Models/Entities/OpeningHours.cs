@@ -1,4 +1,5 @@
 ﻿using Gyms.Models.Dtos.Requests;
+using Gyms.Models.Dtos.Responses;
 using Newtonsoft.Json;
 using NodaTime;
 using System.ComponentModel.DataAnnotations;
@@ -59,6 +60,28 @@ namespace Gyms.API.Models.Entities
             SaturdayTo = TimeOnly.Parse(openingHoursRequest.SaturdayTo);
             SundayFrom = TimeOnly.Parse(openingHoursRequest.SundayFrom);
             SundayTo = TimeOnly.Parse(openingHoursRequest.SundayTo);
+        }
+
+        public OpeningHoursResponse GetOpeningHoursResponseObject()
+        {
+            OpeningHoursResponse response = new OpeningHoursResponse();
+
+            response.MondayFrom = MondayFrom.ToString();
+            response.MondayTo = MondayTo.ToString();
+            response.TuesdayFrom = TuesdayFrom.ToString();
+            response.TuesdayTo = TuesdayTo.ToString();
+            response.WednesdayFrom = WednesdayFrom.ToString();
+            response.WednesdayTo = WednesdayTo.ToString();
+            response.ThursdayFrom = ThursdayFrom.ToString();
+            response.ThursdayTo = ThursdayTo.ToString();
+            response.FridayFrom = FridayFrom.ToString();
+            response.FridayTo = FridayTo.ToString();
+            response.SaturdayFrom = SaturdayFrom.ToString();
+            response.SaturdayTo = SaturdayTo.ToString();
+            response.SundayFrom = SundayFrom.ToString();
+            response.SundayTo = SundayTo.ToString();
+
+            return response;
         }
 
         public TimeOnly? GetOpeningTime(DayOfWeek dayOfWeek)

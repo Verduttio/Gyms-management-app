@@ -34,7 +34,7 @@ namespace Gyms.API.Models.Entities
             OpeningHours = new OpeningHours(clubRequest.OpeningHours);
         }
 
-        public ClubResponse GetClubResponse() 
+        public ClubResponse GetClubResponseObject() 
         {
             ClubResponse clubResponse = new ClubResponse();
             clubResponse.Id = Id;

@@ -22,7 +22,7 @@ namespace Gyms.API.Controllers
         public async Task<IEnumerable<ClubResponse>> GetClubs()
         {
             IEnumerable<Club> clubs = await _clubsService.GetClubsAsync();
-            IEnumerable<ClubResponse> clubResponses = clubs.Select(c => c.GetClubResponse()).ToList();
+            IEnumerable<ClubResponse> clubResponses = clubs.Select(c => c.GetClubResponseObject()).ToList();
 
             return clubResponses;
         }
@@ -32,7 +32,7 @@ namespace Gyms.API.Controllers
         public async Task<ClubResponse> GetClub(int id)
         {
             Club club = await _clubsService.GetClubAsync(id);
-            return club.GetClubResponse();
+            return club.GetClubResponseObject();
         }
 
         // PUT: api/Clubs/5
@@ -40,7 +40,7 @@ namespace Gyms.API.Controllers
         public async Task<ClubResponse> PutClub(int id, ClubRequest clubRequest)
         {
             Club club = await _clubsService.UpdateClubAsync(id, clubRequest);
-            return club.GetClubResponse();
+            return club.GetClubResponseObject();
         }
 
         // POST: api/Clubs
@@ -48,7 +48,7 @@ namespace Gyms.API.Controllers
         public async Task<ClubResponse> PostClub(ClubRequest clubRequest)
         {
             Club club = await _clubsService.AddClubAsync(clubRequest);
-            return club.GetClubResponse();
+            return club.GetClubResponseObject();
         }
 
         // DELETE: api/Clubs/5
@@ -56,7 +56,15 @@ namespace Gyms.API.Controllers
         public async Task<ClubResponse> DeleteClub(int id)
         {
             Club club = await _clubsService.DeleteClubAsync(id);
-            return club.GetClubResponse();
+            return club.GetClubResponseObject();
+        }
+
+        // GET: api/Clubs/5/OpeningHours
+        [HttpGet("{id}/OpeningHours")]
+        public async Task<OpeningHoursResponse> GetClubOpeningHours(int id)
+        {
+            OpeningHours openingHours = await _clubsService.GetOpeningHoursAsync(id);
+            return openingHours.GetOpeningHoursResponseObject();
         }
 
     }

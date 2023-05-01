@@ -1,0 +1,61 @@
+﻿@page "/clubs/{Id:int}"
+@inherits ClubDetailsBase
+
+<h5>ClubDetails</h5>
+
+@if(Club == null || OpeningHours == null)
+{
+    <h3>Loading details...</h3>
+}
+else
+{
+    <h4>@Club.Name</h4>
+    <h3>@Club.Address</h3>
+    <h3>Opening Hours</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Day of week</th>
+                <th>From</th>
+                <th>To</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Monday</td>
+                <td>@OpeningHours.MondayFrom</td>
+                <td>@OpeningHours.MondayTo</td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td>@OpeningHours.TuesdayFrom</td>
+                <td>@OpeningHours.TuesdayTo</td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td>@OpeningHours.WednesdayFrom</td>
+                <td>@OpeningHours.WednesdayTo</td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td>@OpeningHours.ThursdayFrom</td>
+                <td>@OpeningHours.ThursdayTo</td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td>@OpeningHours.FridayFrom</td>
+                <td>@OpeningHours.FridayTo</td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td>@OpeningHours.SaturdayFrom</td>
+                <td>@OpeningHours.SaturdayTo</td>
+            </tr>
+            <tr>
+                <td>Sunday</td>
+                <td>@OpeningHours.SundayFrom</td>
+                <td>@OpeningHours.SundayTo</td>
+            </tr>
+        </tbody>
+    </table>   
+}

@@ -1,6 +1,14 @@
 ﻿@page "/clubs"
 @inherits ClubsBase
 
+
+<style>
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: lightskyblue;
+  cursor: pointer;
+}
+</style>
+
 @if(Clubs == null)
 {
     <h3>Loading clubs...</h3>
@@ -10,7 +18,7 @@ else
     <h3 class="mb-5">Clubs</h3>
 
 
-    <table class="table table-striped">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>ID</th>
@@ -21,7 +29,7 @@ else
         <tbody>
             @foreach (var club in Clubs)
             {
-                <tr>
+                <tr onclick="location.href='/clubs/@club.Id'">
                     <td>@club.Id</td>
                     <td>@club.Name</td>
                     <td>@club.Address</td>
