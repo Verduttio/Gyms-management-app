@@ -1,4 +1,6 @@
 using Gyms.UI.Data;
+using Gyms.UI.Services;
+using Gyms.UI.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -8,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7229") }); 
+builder.Services.AddScoped<IClubsService, ClubsService>();
 
 var app = builder.Build();
 

@@ -1,0 +1,32 @@
+﻿@page "/clubs"
+@inherits ClubsBase
+
+@if(Clubs == null)
+{
+    <h3>Loading clubs...</h3>
+}
+else
+{
+    <h3 class="mb-5">Clubs</h3>
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var club in Clubs)
+            {
+                <tr>
+                    <td>@club.Id</td>
+                    <td>@club.Name</td>
+                    <td>@club.Address</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
