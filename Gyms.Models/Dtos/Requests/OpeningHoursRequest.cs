@@ -1,4 +1,4 @@
-﻿namespace Gyms.API.Models.DTOs
+﻿namespace Gyms.Models.Dtos.Requests
 {
     public class OpeningHoursRequest
     {

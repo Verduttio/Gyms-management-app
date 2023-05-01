@@ -1,8 +1,4 @@
-﻿using Gyms.API.Models.Entities;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace Gyms.API.Models.Requests
+﻿namespace Gyms.Models.Dtos.Requests
 {
     public class ReservationRequest
     {

@@ -1,5 +1,5 @@
 ﻿using Gyms.API.Models.Entities;
-using Gyms.API.Models.Requests;
+using Gyms.Models.Dtos.Requests;
 using Gyms.API.Repositories.Interfaces;
 using Gyms.API.Services.Validators;
 

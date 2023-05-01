@@ -1,4 +1,4 @@
-﻿using Gyms.API.Models.Requests;
+﻿using Gyms.Models.Dtos.Requests;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

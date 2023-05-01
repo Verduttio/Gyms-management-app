@@ -1,4 +1,4 @@
-﻿namespace Gyms.API.Models.Requests
+﻿namespace Gyms.Models.Dtos.Requests
 {
     public class CoachRequest
     {

@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gyms.API", "Gyms.API\Gyms.API.csproj", "{0644299F-32F1-4051-A37C-A16330455916}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gyms.API", "Gyms.API\Gyms.API.csproj", "{0644299F-32F1-4051-A37C-A16330455916}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gyms.UI", "Gyms.UI\Gyms.UI.csproj", "{E1D20C53-CEAD-4762-9940-A130A40EEF92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gyms.Models", "Gyms.Models\Gyms.Models.csproj", "{B8AC68BE-AFB7-4341-8261-E6E77BC2FB2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{0644299F-32F1-4051-A37C-A16330455916}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0644299F-32F1-4051-A37C-A16330455916}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0644299F-32F1-4051-A37C-A16330455916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1D20C53-CEAD-4762-9940-A130A40EEF92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1D20C53-CEAD-4762-9940-A130A40EEF92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1D20C53-CEAD-4762-9940-A130A40EEF92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1D20C53-CEAD-4762-9940-A130A40EEF92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8AC68BE-AFB7-4341-8261-E6E77BC2FB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8AC68BE-AFB7-4341-8261-E6E77BC2FB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8AC68BE-AFB7-4341-8261-E6E77BC2FB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8AC68BE-AFB7-4341-8261-E6E77BC2FB2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

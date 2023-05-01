@@ -1,5 +1,5 @@
 ﻿using Gyms.API.Models.Entities;
-using Gyms.API.Models.Requests;
+using Gyms.Models.Dtos.Requests;
 using Gyms.API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

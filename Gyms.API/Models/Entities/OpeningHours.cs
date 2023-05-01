@@ -1,4 +1,4 @@
-﻿using Gyms.API.Models.DTOs;
+﻿using Gyms.Models.Dtos.Requests;
 using Newtonsoft.Json;
 using NodaTime;
 using System.ComponentModel.DataAnnotations;

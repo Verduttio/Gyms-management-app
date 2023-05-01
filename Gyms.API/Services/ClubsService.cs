@@ -1,4 +1,4 @@
-﻿using Gyms.API.Models.DTOs;
+﻿using Gyms.Models.Dtos.Requests;
 using Gyms.API.Models.Entities;
 using Gyms.API.Repositories.Interfaces;
 

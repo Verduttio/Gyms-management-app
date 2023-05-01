@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Gyms.API.Models.Entities;
 using Gyms.API.Services;
-using Gyms.API.Models.DTOs;
+using Gyms.Models.Dtos.Requests;
 
 namespace Gyms.API.Controllers
 {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using NodaTime;
-using Gyms.API.Models.Requests;
+using Gyms.Models.Dtos.Requests;
 
 namespace Gyms.API.Models.Entities
 {
