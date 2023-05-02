@@ -13,6 +13,7 @@ builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7229") }); 
 builder.Services.AddScoped<IClubsService, ClubsService>();
+builder.Services.AddScoped<ICoachesService, CoachesService>();
 
 var app = builder.Build();
 

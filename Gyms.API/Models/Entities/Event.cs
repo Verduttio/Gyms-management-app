@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using NodaTime;
 using Gyms.Models.Dtos.Requests;
+using Gyms.Models.Dtos.Responses;
 
 namespace Gyms.API.Models.Entities
 {
@@ -61,6 +62,27 @@ namespace Gyms.API.Models.Entities
             Regular = eventRequest.Regular;
             ParticipantsNumber = eventRequest.ParticipantsNumber;
             Cancelled = eventRequest.Cancelled;
+        }
+
+        public static EventResponse? MakeEventResponse(Event @event) 
+        {
+            if(@event == null) return null;
+
+            EventResponse eventResponse = new EventResponse();
+            eventResponse.Id = @event.Id;
+            eventResponse.Date = @event.Date.ToString();
+            eventResponse.Title = @event.Title;
+            eventResponse.Day = @event.Day;
+            eventResponse.Time = @event.Time.ToString();
+            eventResponse.Duration = @event.Duration.ToString();
+            eventResponse.ClubId = @event.ClubId;
+            eventResponse.CoachId = @event.CoachId;
+            eventResponse.ParticipantsLimit = @event.ParticipantsLimit;
+            eventResponse.Regular = @event.Regular;
+            eventResponse.ParticipantsNumber = @event.ParticipantsNumber;
+            eventResponse.Cancelled = @event.Cancelled;
+
+            return eventResponse;
         }
     }
 }

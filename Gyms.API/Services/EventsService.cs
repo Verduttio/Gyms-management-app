@@ -31,7 +31,7 @@ namespace Gyms.API.Services
         public async Task<Event?> AddEventAsync(EventRequest eventRequest)
         {
             Event @event = new Event(eventRequest);
-            IEnumerable<Event> coachEvents = (await GetEventsByCoachId(@event.CoachId));
+            IEnumerable<Event> coachEvents = (await GetEventsByCoachIdAsync(@event.CoachId));
             if (await _eventsValidator.EventInClubOpeningHours(@event.ClubId, @event.Day, @event.Time, @event.Duration) &&
                 _eventsValidator.CoachFree(coachEvents, @event.Date, @event.Time, @event.Duration))
             {
@@ -58,7 +58,7 @@ namespace Gyms.API.Services
             return await _eventsRepository.DeleteEventAsync(id);
         }
 
-        public async Task<IEnumerable<Event>> GetEventsByCoachId(int coachId)
+        public async Task<IEnumerable<Event>> GetEventsByCoachIdAsync(int coachId)
         {
             return await _eventsRepository.GetEventsByCoachIdAsync(coachId);
         }

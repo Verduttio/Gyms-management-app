@@ -2,6 +2,7 @@
 using Gyms.Models.Dtos.Requests;
 using Gyms.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using Gyms.Models.Dtos.Responses;
 
 namespace Gyms.API.Controllers
 {
@@ -49,6 +50,16 @@ namespace Gyms.API.Controllers
         public async Task<Event> DeleteEventAsync(int id)
         {
             return await _eventsService.DeleteEventAsync(id);
+        }
+
+        // GET: api/Events/Coach/5
+        [HttpGet("Coach/{coachId}")]
+        public async Task<IEnumerable<EventResponse?>> GetEventsByCoachIdAsync(int coachId)
+        {
+            IEnumerable<Event> events = await _eventsService.GetEventsByCoachIdAsync(coachId);
+            IEnumerable<EventResponse?> eventResponses = events.Select(e => Event.MakeEventResponse(e)).ToList();
+
+            return eventResponses;
         }
 
     }

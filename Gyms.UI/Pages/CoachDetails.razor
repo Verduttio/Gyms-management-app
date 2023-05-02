@@ -1,0 +1,47 @@
+﻿@page "/coaches/{Id:int}"
+@inherits CoachDetailsBase
+
+
+<h5>Coach details</h5>
+
+@if(Coach == null || Events == null)
+{
+    <h3>Loading details...</h3>
+}
+else
+{
+    <h4>@Coach.FirstName</h4>
+    <h3>@Coach.LastName</h3>
+    <h3>@Coach.YearOfBirth</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Duration</th>
+                <th>ClubId</th>
+                <th>Participants number</th>
+                <th>Participants limit</th>
+                <th>Is regular</th>
+                <th>Cancelled</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var @coachEvent in Events)
+            {
+                <tr>
+                    <td>@coachEvent.Title</td>
+                    <td>@coachEvent.Date</td>
+                    <td>@coachEvent.Time</td>
+                    <td>@coachEvent.Duration</td>
+                    <td>@coachEvent.ClubId</td>
+                    <td>@coachEvent.ParticipantsNumber</td>
+                    <td>@coachEvent.ParticipantsLimit</td>
+                    <td>@coachEvent.Regular</td>
+                    <td>@coachEvent.Cancelled</td>
+                </tr>
+            }
+        </tbody>
+    </table>   
+}

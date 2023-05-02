@@ -19,9 +19,9 @@ namespace Gyms.UI.Pages
         protected override async Task OnInitializedAsync()
         {
             Club = await ClubsService.GetClub(Id);
-            System.Diagnostics.Debug.WriteLine("******************************");
+
             System.Diagnostics.Debug.WriteLine(Club.Name);
-            System.Diagnostics.Debug.WriteLine("******************************");
+
             OpeningHours = await ClubsService.GetClubOpeningHours(Id);
         }
     }
