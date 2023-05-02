@@ -6,6 +6,6 @@
 
         public string? Address { get; set; }
 
-        public OpeningHoursRequest? OpeningHours { get; set; }
+        public OpeningHoursRequest OpeningHours { get; set; } = new OpeningHoursRequest();
     }
 }

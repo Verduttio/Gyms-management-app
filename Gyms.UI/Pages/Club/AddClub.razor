@@ -1,0 +1,106 @@
+﻿@page "/clubs/add"
+@inherits AddClubBase
+
+@if(ClubRequest == null)
+{
+    <h3>Loading club...</h3>
+}
+else {
+<div class="form-group">
+  <label for="name">Nazwa:</label>
+  <input type="text" class="form-control" id="name" @bind-value="@ClubRequest.Name" />
+
+  <label for="address">Adres:</label>
+  <input type="text" class="form-control" id="address" @bind-value="@ClubRequest.Address" />
+
+  <label class="py-2">Godziny otwarcia:</label>
+  <div class="row">
+    <div class="col-md-6">
+      <label for="mondayFrom">Poniedziałek od:</label>
+      <input type="text" class="form-control" id="mondayFrom" @bind-value="@ClubRequest.OpeningHours.MondayFrom" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="mondayTo">do:</label>
+      <input type="text" class="form-control" id="mondayTo" @bind-value="@ClubRequest.OpeningHours.MondayTo" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <label for="tuesdayFrom">Wtorek od:</label>
+      <input type="text" class="form-control" id="tuesdayFrom" @bind-value="@ClubRequest.OpeningHours.TuesdayFrom" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="tuesdayTo">do:</label>
+      <input type="text" class="form-control" id="tuesdayTo" @bind-value="@ClubRequest.OpeningHours.TuesdayTo" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <label for="wednesdayFrom">Środa od:</label>
+      <input type="text" class="form-control" id="wednesdayFrom" @bind-value="@ClubRequest.OpeningHours.WednesdayFrom" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="wednesdayTo">do:</label>
+      <input type="text" class="form-control" id="wednesdayTo" @bind-value="@ClubRequest.OpeningHours.WednesdayTo" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <label for="thursdayFrom">Czwartek od:</label>
+      <input type="text" class="form-control" id="thursdayFrom" @bind-value="@ClubRequest.OpeningHours.ThursdayFrom" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="thursdayTo">do:</label>
+      <input type="text" class="form-control" id="thursdayTo" @bind-value="@ClubRequest.OpeningHours.ThursdayTo" />
+    </div>
+  </div>
+
+    <div class="row">
+    <div class="col-md-6">
+      <label for="fridayFrom">Friday from:</label>
+      <input type="text" class="form-control" id="fridayFrom" @bind-value="@ClubRequest.OpeningHours.FridayFrom" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="fridayTo">to:</label>
+      <input type="text" class="form-control" id="fridayTo" @bind-value="@ClubRequest.OpeningHours.FridayTo" />
+    </div>
+  </div>
+
+    <div class="row">
+    <div class="col-md-6">
+      <label for="saturdayFrom">Saturday from:</label>
+      <input type="text" class="form-control" id="saturdayFrom" @bind-value="@ClubRequest.OpeningHours.SaturdayFrom" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="saturdayTo">to:</label>
+      <input type="text" class="form-control" id="saturdayTo" @bind-value="@ClubRequest.OpeningHours.SaturdayTo" />
+    </div>
+  </div>
+
+    <div class="row">
+    <div class="col-md-6">
+      <label for="sundayFrom">Sunday from:</label>
+      <input type="text" class="form-control" id="sundayFrom" @bind-value="@ClubRequest.OpeningHours.SundayFrom" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="sundayTo">do:</label>
+      <input type="text" class="form-control" id="sundayTo" @bind-value="@ClubRequest.OpeningHours.SundayTo" />
+    </div>
+  </div>
+</div>
+
+
+<div class="py-3">
+  <button type="button" class="btn btn-outline-success py-2" @onclick="AddClub">Add club</button>
+</div>
+}

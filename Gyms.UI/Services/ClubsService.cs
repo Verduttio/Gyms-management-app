@@ -1,4 +1,5 @@
-﻿using Gyms.Models.Dtos.Responses;
+﻿using Gyms.Models.Dtos.Requests;
+using Gyms.Models.Dtos.Responses;
 using Gyms.UI.Services.Interfaces;
 
 namespace Gyms.UI.Services
@@ -48,6 +49,20 @@ namespace Gyms.UI.Services
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public async Task<ClubResponse> AddClub(ClubRequest clubRequest)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("api/Clubs", clubRequest);
+                var club = await response.Content.ReadFromJsonAsync<ClubResponse>();
+                return club;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding club", ex);
             }
         }
     }

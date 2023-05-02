@@ -66,6 +66,7 @@ namespace Gyms.API.Models.Entities
         {
             OpeningHoursResponse response = new OpeningHoursResponse();
 
+            response.Id = Id;
             response.MondayFrom = MondayFrom.ToString();
             response.MondayTo = MondayTo.ToString();
             response.TuesdayFrom = TuesdayFrom.ToString();

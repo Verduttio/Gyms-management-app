@@ -1,4 +1,5 @@
-﻿using Gyms.Models.Dtos.Responses;
+﻿using Gyms.Models.Dtos.Requests;
+using Gyms.Models.Dtos.Responses;
 
 namespace Gyms.UI.Services.Interfaces
 {
@@ -7,5 +8,6 @@ namespace Gyms.UI.Services.Interfaces
         Task<IEnumerable<ClubResponse>> GetClubs();
         Task<ClubResponse> GetClub(int id);
         Task<OpeningHoursResponse> GetClubOpeningHours(int clubId);
+        Task<ClubResponse> AddClub(ClubRequest club);
     }
 }
