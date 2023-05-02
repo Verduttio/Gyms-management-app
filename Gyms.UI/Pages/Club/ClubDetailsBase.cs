@@ -11,6 +11,8 @@ namespace Gyms.UI.Pages.Club
 
         [Inject]
         public IClubsService ClubsService { get; set; }
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
 
         public ClubResponse Club { get; set; }
 
@@ -24,5 +26,13 @@ namespace Gyms.UI.Pages.Club
 
             OpeningHours = await ClubsService.GetClubOpeningHours(Id);
         }
+
+        protected async Task DeleteClub()
+        {
+            await ClubsService.DeleteClub(Id);
+            NavigationManager.NavigateTo("/clubs");
+        }
+
+
     }
 }

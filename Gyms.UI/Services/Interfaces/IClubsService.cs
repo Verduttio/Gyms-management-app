@@ -9,5 +9,6 @@ namespace Gyms.UI.Services.Interfaces
         Task<ClubResponse> GetClub(int id);
         Task<OpeningHoursResponse> GetClubOpeningHours(int clubId);
         Task<ClubResponse> AddClub(ClubRequest club);
+        Task<ClubResponse> DeleteClub(int id);
     }
 }

@@ -65,5 +65,19 @@ namespace Gyms.UI.Services
                 throw new Exception("Error adding club", ex);
             }
         }
+
+        public async Task<ClubResponse> DeleteClub(int id)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"api/Clubs/{id}");
+                var club = await response.Content.ReadFromJsonAsync<ClubResponse>();
+                return club;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error deleting club", ex);
+            }
+        }
     }
 }
