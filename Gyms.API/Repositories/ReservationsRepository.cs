@@ -46,6 +46,11 @@ namespace Gyms.API.Repositories
             return await _context.Reservations.ToListAsync();
         }
 
+        public async Task<IEnumerable<Reservation>> GetReservationsByEventIdAsync(int eventId)
+        {
+            return await _context.Reservations.Where(r => r.EventId == eventId).ToListAsync();
+        }
+
         public async Task<Reservation> UpdateReservationAsync(Reservation reservation)
         {
             _context.Entry(reservation).State = EntityState.Modified;

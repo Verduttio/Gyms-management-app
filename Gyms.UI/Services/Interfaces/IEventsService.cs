@@ -7,5 +7,6 @@ namespace Gyms.UI.Services.Interfaces
         Task<IEnumerable<EventResponse>> GetEvents();
         Task<EventResponse> GetEvent(int id);
         Task<IEnumerable<EventResponse>> GetCoachEvents(int coachId);
+        Task<EventResponse> DeleteEvent(int id);
     }
 }

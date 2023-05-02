@@ -8,10 +8,13 @@ namespace Gyms.UI.Pages.Coach
     {
         [Parameter]
         public int Id { get; set; }
+
         [Inject]
         public ICoachesService CoachesService { get; set; }
+        
         [Inject]
         public IEventsService EventsService { get; set; }
+        
         [Inject]
         public NavigationManager NavigationManager { get; set; }
         public CoachResponse Coach { get; set; }

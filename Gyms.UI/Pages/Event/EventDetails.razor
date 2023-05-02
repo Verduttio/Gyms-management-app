@@ -1,0 +1,38 @@
+﻿@page "/events/{Id:int}"
+@inherits EventDetailsBase
+
+@if (Event == null)
+{
+    <h3>Loading event...</h3>
+}
+else
+{
+    <h3 class="mb-5">Event details</h3>
+    <div class="card">
+        <div class="card-body">
+        <h5 class="card-title">@Event.Title</h5>
+        <p class="card-text">
+          <strong>Date: </strong> @Event.Date <br>
+          <strong>Time: </strong> @Event.Time <br>
+          <strong>Duration: </strong> @Event.Duration (hh:mm:ss) <br>
+          <strong>Club Id: </strong> @Event.ClubId <br>
+          <strong>Coach Id: </strong> @Event.CoachId <br>
+          <strong>Participants: </strong> @Event.ParticipantsNumber / @Event.ParticipantsLimit <br>
+          <strong>Regular: </strong> @Event.Regular <br>
+          <strong>Cancelled: </strong> @Event.Cancelled
+        </p>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <div class="py-3 pr-2">
+        <button type="button" class="btn btn-danger py-2" @onclick="DeleteEvent">Delete event</button>
+      </div>
+      <div class="py-3 pl-2">
+        <button type="button" class="btn btn-primary py-2" onclick="location.href='/events/@Id/reserve'">Make a reservation</button>
+      </div>
+    </div>
+
+    <h4>Event reservations:</h4>
+    <DisplayReservations Reservations=@EventReservations/>
+}

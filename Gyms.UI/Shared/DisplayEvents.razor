@@ -1,4 +1,11 @@
-﻿<table class="table table-striped">
+﻿<style>
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: lightskyblue;
+  cursor: pointer;
+}
+</style>
+
+<table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>Title</th>
@@ -16,7 +23,7 @@
         <tbody>
             @foreach(var @eventt in Events)
             {
-                <tr>
+                <tr onclick="location.href='/events/@eventt.Id'">
                     <td>@eventt.Title</td>
                     <td>@eventt.Date</td>
                     <td>@eventt.Time</td>

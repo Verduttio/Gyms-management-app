@@ -9,5 +9,6 @@ namespace Gyms.API.Repositories.Interfaces
         Task<Reservation> AddReservationAsync(Reservation reservation);
         Task<Reservation> UpdateReservationAsync(Reservation reservation);
         Task<Reservation> DeleteReservationAsync(int id);
+        Task<IEnumerable<Reservation>> GetReservationsByEventIdAsync(int eventId);
     }
 }

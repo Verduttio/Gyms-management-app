@@ -1,0 +1,22 @@
+﻿<table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Reservations.Select((value, index) => new { value, index }))
+            {
+                <tr>
+                    <td>@x.index.ToString()</td>
+                    <td>@x.value.Name @x.value.Surname</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+@code {
+    [Parameter]
+    public IEnumerable<ReservationResponse> Reservations { get; set; }
+}

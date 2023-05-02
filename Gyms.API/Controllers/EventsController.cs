@@ -29,9 +29,12 @@ namespace Gyms.API.Controllers
 
         // GET: api/Events/5
         [HttpGet("{id}")]
-        public async Task<Event> GetEventAsync(int id)
+        public async Task<EventResponse?> GetEventAsync(int id)
         {
-            return await _eventsService.GetEventAsync(id);
+            Event @event = await _eventsService.GetEventAsync(id);
+            EventResponse? eventResponse = Event.MakeEventResponse(@event);
+
+            return eventResponse;
         }
 
         // POST: api/Events
@@ -50,9 +53,12 @@ namespace Gyms.API.Controllers
 
         // DELETE: api/Events/5
         [HttpDelete("{id}")]
-        public async Task<Event> DeleteEventAsync(int id)
+        public async Task<EventResponse> DeleteEventAsync(int id)
         {
-            return await _eventsService.DeleteEventAsync(id);
+            Event @event = await _eventsService.DeleteEventAsync(id);
+            EventResponse? eventResponse = Event.MakeEventResponse(@event);
+
+            return eventResponse;
         }
 
         // GET: api/Events/Coach/5

@@ -1,0 +1,20 @@
+﻿@page "/events/{Id:int}/reserve"
+@inherits AddReservationBase
+
+<h3>Make a reservation</h3>
+@if(ReservationRequest != null) {
+    <div>
+        <h4>Event Id: @ReservationRequest.EventId</h4>
+      <label for="name" style="display: block;">Name:</label>
+      <input type="text" id="name" class="form-control" @bind-value="@ReservationRequest.Name" />
+
+      <label for="surname">Surname:</label>
+      <input type="text" id="surname" class="form-control" @bind-value="@ReservationRequest.Surname" />
+    </div>
+
+    <div class="py-3">
+        <button type="button" class="btn btn-outline-success py-2" @onclick="AddReservation">Add reservation</button>
+    </div>
+}
+
+

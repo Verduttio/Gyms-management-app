@@ -1,4 +1,5 @@
 ﻿using Gyms.Models.Dtos.Requests;
+using Gyms.Models.Dtos.Responses;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -30,6 +31,21 @@ namespace Gyms.API.Models.Entities
             EventId = reservationRequest.EventId;
             Name = reservationRequest.Name;
             Surname = reservationRequest.Surname;
+        }
+
+        public static ReservationResponse MakeReservationResponse(Reservation reservation)
+        {
+            if(reservation == null)
+            {
+                return null;
+            }
+
+            ReservationResponse reservationResponse = new ReservationResponse();
+            reservationResponse.Id = reservation.Id;
+            reservationResponse.EventId = reservation.EventId;
+            reservationResponse.Name = reservation.Name;
+            reservationResponse.Surname = reservation.Surname;
+            return reservationResponse;
         }
     }
 }

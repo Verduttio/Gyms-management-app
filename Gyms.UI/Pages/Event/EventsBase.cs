@@ -2,7 +2,7 @@
 using Gyms.UI.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
 
-namespace Gyms.UI.Pages
+namespace Gyms.UI.Pages.Event
 {
     public class EventsBase : ComponentBase
     {

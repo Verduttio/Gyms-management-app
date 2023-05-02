@@ -1,4 +1,5 @@
-﻿using Gyms.Models.Dtos.Responses;
+﻿using Gyms.Models.Dtos.Requests;
+using Gyms.Models.Dtos.Responses;
 using Gyms.UI.Services.Interfaces;
 
 namespace Gyms.UI.Services
@@ -48,6 +49,34 @@ namespace Gyms.UI.Services
             catch (Exception ex)
             {
                 throw new Exception("Error getting coach events", ex);
+            }
+        }
+
+        //public async Task<CoachResponse> AddCoach(CoachRequest coachRequest)
+        //{
+        //    try
+        //    {
+        //        var response = await _httpClient.PostAsJsonAsync("api/Coaches", coachRequest);
+        //        var coach = await response.Content.ReadFromJsonAsync<CoachResponse>();
+        //        return coach;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Error adding coach", ex);
+        //    }
+        //}
+
+        public async Task<EventResponse> DeleteEvent(int id)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"api/Events/{id}");
+                var @event = await response.Content.ReadFromJsonAsync<EventResponse>();
+                return @event;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error deleting event", ex);
             }
         }
     }

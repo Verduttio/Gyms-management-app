@@ -67,7 +67,9 @@ namespace Gyms.API.Services
             reservation.Surname = reservationRequest.Surname;
         }
 
-
-
+        public async Task<IEnumerable<Reservation>> GetReservationsByEventIdAsync(int eventId)
+        {
+            return await _reservationsRepository.GetReservationsByEventIdAsync(eventId);
+        }
     }
 }

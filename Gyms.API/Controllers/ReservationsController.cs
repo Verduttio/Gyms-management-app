@@ -3,6 +3,7 @@ using Gyms.Models.Dtos.Requests;
 using Gyms.API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Gyms.Models.Dtos.Responses;
 
 namespace Gyms.API.Controllers
 {
@@ -19,37 +20,53 @@ namespace Gyms.API.Controllers
 
         // GET: api/Reservations
         [HttpGet]
-        public async Task<IEnumerable<Reservation>> GetReservations()
+        public async Task<IEnumerable<ReservationResponse>> GetReservations()
         {
-            return await _reservationsService.GetReservationsAsync();
+            IEnumerable<Reservation> reservations = await _reservationsService.GetReservationsAsync();
+            IEnumerable<ReservationResponse> reservationResponses = reservations.Select(r => Reservation.MakeReservationResponse(r)).ToList();
+
+            return reservationResponses;
         }
 
         // GET: api/Reservations/5
         [HttpGet("{id}")]
-        public async Task<Reservation> GetReservation(int id)
+        public async Task<ReservationResponse> GetReservation(int id)
         {
-            return await _reservationsService.GetReservationAsync(id);
+            Reservation reservation = await _reservationsService.GetReservationAsync(id);
+            return Reservation.MakeReservationResponse(reservation);
         }
 
         // PUT: api/Reservations/5
         [HttpPut("{id}")]
-        public async Task<Reservation> PutReservation(int id, ReservationRequest reservationRequest)
+        public async Task<ReservationResponse> PutReservation(int id, ReservationRequest reservationRequest)
         {
-            return await _reservationsService.UpdateReservationAsync(id, reservationRequest);
+            Reservation reservation = await _reservationsService.UpdateReservationAsync(id, reservationRequest);
+            return Reservation.MakeReservationResponse(reservation);
         }
 
         // POST: api/Reservations
         [HttpPost]
-        public async Task<Reservation> PostReservation(ReservationRequest reservationRequest)
+        public async Task<ReservationResponse> PostReservation(ReservationRequest reservationRequest)
         {
-            return await _reservationsService.AddReservationAsync(reservationRequest);
+            Reservation reservation = await _reservationsService.AddReservationAsync(reservationRequest);
+            return Reservation.MakeReservationResponse(reservation);
         }
 
         // DELETE: api/Reservations/5
         [HttpDelete("{id}")]
-        public async Task<Reservation> DeleteReservation(int id)
+        public async Task<ReservationResponse> DeleteReservation(int id)
         {
-            return await _reservationsService.DeleteReservationAsync(id);
+            Reservation reservation = await _reservationsService.DeleteReservationAsync(id);
+            return Reservation.MakeReservationResponse(reservation);
+        }
+
+        // GET: api/Reservations/Event/5
+        [HttpGet("Event/{eventId}")]
+        public async Task<IEnumerable<ReservationResponse>> GetReservationsByEventId(int eventId)
+        {
+            IEnumerable<Reservation> reservations = await _reservationsService.GetReservationsByEventIdAsync(eventId);
+            IEnumerable<ReservationResponse> reservationResponses = reservations.Select(r => Reservation.MakeReservationResponse(r)).ToList();
+            return reservationResponses;
         }
     }
 }
