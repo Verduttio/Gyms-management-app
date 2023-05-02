@@ -6,6 +6,5 @@ namespace Gyms.UI.Services.Interfaces
     {
         Task<IEnumerable<CoachResponse>> GetCoaches();
         Task<CoachResponse> GetCoach(int id);
-        Task<IEnumerable<EventResponse>> GetCoachEvents(int coachId);
     }
 }

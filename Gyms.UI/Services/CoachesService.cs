@@ -37,18 +37,5 @@ namespace Gyms.UI.Services
                 throw new Exception("Error getting coaches", ex);
             }
         }
-
-        public async Task<IEnumerable<EventResponse>> GetCoachEvents(int coachId)
-        {
-            try
-            {
-                var coachEvents = await _httpClient.GetFromJsonAsync<IEnumerable<EventResponse>>($"api/Events/Coach/{coachId}");
-                return coachEvents;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error getting coach events", ex);
-            }
-        }
     }
 }

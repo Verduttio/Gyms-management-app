@@ -1,0 +1,12 @@
+﻿@page "/events"
+@inherits EventsBase
+
+@if(Events == null)
+{
+    <h3>Loading events...</h3>
+}
+else
+{
+    <h3 class="mb-5">Events</h3>
+    <DisplayEvents Events="@Events"/>
+}

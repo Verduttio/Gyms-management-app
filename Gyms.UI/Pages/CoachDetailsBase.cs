@@ -10,13 +10,15 @@ namespace Gyms.UI.Pages
         public int Id { get; set; }
         [Inject]
         public ICoachesService CoachesService { get; set; }
+        [Inject]
+        public IEventsService EventsService { get; set; }   
         public CoachResponse Coach { get; set; }
         public IEnumerable<EventResponse> Events { get; set; }  
 
         protected override async Task OnInitializedAsync()
         {
             Coach = await CoachesService.GetCoach(Id);
-            Events = await CoachesService.GetCoachEvents(Id);
+            Events = await EventsService.GetCoachEvents(Id);
         }
     }
 }

@@ -19,9 +19,12 @@ namespace Gyms.API.Controllers
 
         // GET: api/Events
         [HttpGet]
-        public async Task<IEnumerable<Event>> GetEventsAsync()
+        public async Task<IEnumerable<EventResponse?>> GetEventsAsync()
         {
-            return await _eventsService.GetEventsAsync();
+            IEnumerable<Event> events = await _eventsService.GetEventsAsync();
+            IEnumerable<EventResponse?> eventResponses = events.Select(e => Event.MakeEventResponse(e)).ToList();
+
+            return eventResponses;
         }
 
         // GET: api/Events/5

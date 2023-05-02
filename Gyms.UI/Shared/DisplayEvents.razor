@@ -1,0 +1,38 @@
+﻿<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Duration</th>
+                <th>ClubId</th>
+                <th>CoachId</th>
+                <th>Participants number</th>
+                <th>Participants limit</th>
+                <th>Is regular</th>
+                <th>Cancelled</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var @eventt in Events)
+            {
+                <tr>
+                    <td>@eventt.Title</td>
+                    <td>@eventt.Date</td>
+                    <td>@eventt.Time</td>
+                    <td>@eventt.Duration</td>
+                    <td>@eventt.ClubId</td>
+                    <td>@eventt.CoachId</td>
+                    <td>@eventt.ParticipantsNumber</td>
+                    <td>@eventt.ParticipantsLimit</td>
+                    <td>@eventt.Regular</td>
+                    <td>@eventt.Cancelled</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+@code {
+    [Parameter]
+    public IEnumerable<EventResponse> Events { get; set; }
+}
