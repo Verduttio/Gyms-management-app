@@ -41,6 +41,11 @@ namespace Gyms.API.Repositories
             return await _context.Events.ToListAsync();
         }
 
+        public async Task<IEnumerable<Event>> GetEventsByClubIdAsync(int clubId)
+        {
+            return await _context.Events.Where(e => e.ClubId == clubId).ToListAsync();
+        }
+
         public async Task<IEnumerable<Event>> GetEventsByCoachIdAsync(int coachId)
         {
             return await _context.Events.Where(e => e.CoachId == coachId).ToListAsync();

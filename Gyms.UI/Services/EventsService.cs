@@ -52,20 +52,6 @@ namespace Gyms.UI.Services
             }
         }
 
-        //public async Task<CoachResponse> AddCoach(CoachRequest coachRequest)
-        //{
-        //    try
-        //    {
-        //        var response = await _httpClient.PostAsJsonAsync("api/Coaches", coachRequest);
-        //        var coach = await response.Content.ReadFromJsonAsync<CoachResponse>();
-        //        return coach;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception("Error adding coach", ex);
-        //    }
-        //}
-
         public async Task<EventResponse> DeleteEvent(int id)
         {
             try
@@ -77,6 +63,19 @@ namespace Gyms.UI.Services
             catch (Exception ex)
             {
                 throw new Exception("Error deleting event", ex);
+            }
+        }
+
+        public async Task<IEnumerable<EventResponse>> GetClubEvents(int clubId)
+        {
+            try
+            {
+                var clubEvents = await _httpClient.GetFromJsonAsync<IEnumerable<EventResponse>>($"api/Events/Club/{clubId}");
+                return clubEvents;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting club events", ex);
             }
         }
     }

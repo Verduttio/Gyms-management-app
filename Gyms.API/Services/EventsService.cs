@@ -108,6 +108,9 @@ namespace Gyms.API.Services
             @event.Cancelled = eventRequest.Cancelled;
         }
 
-        
+        internal Task<IEnumerable<Event>> GetEventsByClubIdAsync(int clubId)
+        {
+            return _eventsRepository.GetEventsByClubIdAsync(clubId);
+        }
     }
 }

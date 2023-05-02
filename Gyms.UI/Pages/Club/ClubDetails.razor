@@ -3,7 +3,7 @@
 
 <h5>ClubDetails</h5>
 
-@if(Club == null || OpeningHours == null)
+@if(Club == null || OpeningHours == null || ClubEvents == null)
 {
     <h3>Loading details...</h3>
 }
@@ -65,4 +65,8 @@ else
             </tr>
         </tbody>
     </table>   
+
+    
+    <h3>Club events</h3>
+    <DisplayEvents Events="@ClubEvents"/>
 }

@@ -11,12 +11,18 @@ namespace Gyms.UI.Pages.Club
 
         [Inject]
         public IClubsService ClubsService { get; set; }
+
+        [Inject]
+        public IEventsService EventsService { get; set; }
+
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
         public ClubResponse Club { get; set; }
 
         public OpeningHoursResponse OpeningHours { get; set; }
+
+        public IEnumerable<EventResponse> ClubEvents { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -25,6 +31,7 @@ namespace Gyms.UI.Pages.Club
             System.Diagnostics.Debug.WriteLine(Club.Name);
 
             OpeningHours = await ClubsService.GetClubOpeningHours(Id);
+            ClubEvents = await EventsService.GetClubEvents(Id);
         }
 
         protected async Task DeleteClub()

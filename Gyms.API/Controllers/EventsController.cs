@@ -71,5 +71,14 @@ namespace Gyms.API.Controllers
             return eventResponses;
         }
 
+        // GET: api/Events/Club/5
+        [HttpGet("Club/{clubId}")]
+        public async Task<IEnumerable<EventResponse?>> GetEventsByClubIdAsync(int clubId)
+        {
+            IEnumerable<Event> events = await _eventsService.GetEventsByClubIdAsync(clubId);
+            IEnumerable<EventResponse?> eventResponses = events.Select(e => Event.MakeEventResponse(e)).ToList();
+            return eventResponses;
+        }
+
     }
 }

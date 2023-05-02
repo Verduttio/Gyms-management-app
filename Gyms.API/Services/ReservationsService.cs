@@ -2,6 +2,7 @@
 using Gyms.Models.Dtos.Requests;
 using Gyms.API.Repositories.Interfaces;
 using Gyms.API.Services.Validators;
+using Microsoft.Extensions.Logging;
 
 namespace Gyms.API.Services
 {
