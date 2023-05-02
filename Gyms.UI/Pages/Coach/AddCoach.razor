@@ -1,0 +1,23 @@
+﻿@page "/coaches/add"
+@inherits AddCoachBase
+
+<h3>Add coach</h3>
+
+<div class="form-group">
+  <label for="firstName">First name:</label>
+  <input type="text" class="form-control" id="firstName" @bind-value="@CoachRequest.FirstName" />
+</div>
+
+<div class="form-group">
+  <label for="lastName">Last name:</label>
+  <input type="text" class="form-control" id="lastName" @bind-value="@CoachRequest.LastName" />
+</div>
+
+<div class="form-group">
+  <label for="yearOfBirth">Year of birth:</label>
+  <input type="number" class="form-control" id="yearOfBirth" @bind-value="@CoachRequest.YearOfBirth"/>
+</div>
+
+<div class="py-3">
+  <button type="button" class="btn btn-outline-success py-2" @onclick="AddCoach">Add coach</button>
+</div>

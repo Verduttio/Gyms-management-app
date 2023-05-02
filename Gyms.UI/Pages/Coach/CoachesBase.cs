@@ -2,7 +2,7 @@
 using Gyms.UI.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
 
-namespace Gyms.UI.Pages
+namespace Gyms.UI.Pages.Coach
 {
     public class CoachesBase : ComponentBase
     {

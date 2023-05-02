@@ -13,5 +13,9 @@ else
     <h4>@Coach.FirstName</h4>
     <h3>@Coach.LastName</h3>
     <h3>@Coach.YearOfBirth</h3>
+    <div class="py-3">
+        <button type="button" class="btn btn-danger py-2" @onclick="DeleteCoach">Delete coach</button>
+    </div>
+    <h4>Coach events:</h4>
     <DisplayEvents Events=@Events/>   
 }

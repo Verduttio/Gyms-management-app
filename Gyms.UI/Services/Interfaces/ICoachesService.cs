@@ -1,4 +1,5 @@
-﻿using Gyms.Models.Dtos.Responses;
+﻿using Gyms.Models.Dtos.Requests;
+using Gyms.Models.Dtos.Responses;
 
 namespace Gyms.UI.Services.Interfaces
 {
@@ -6,5 +7,7 @@ namespace Gyms.UI.Services.Interfaces
     {
         Task<IEnumerable<CoachResponse>> GetCoaches();
         Task<CoachResponse> GetCoach(int id);
+        Task<CoachResponse> AddCoach(CoachRequest coachRequest);
+        Task<CoachResponse> DeleteCoach(int id);
     }
 }

@@ -10,7 +10,7 @@ namespace Gyms.UI.Pages.Club
         public IClubsService ClubsService { get; set; }
 
         [Inject]
-        NavigationManager Navigation { get; set; }
+        public NavigationManager Navigation { get; set; }
 
         public ClubRequest ClubRequest { get; set; }
 
