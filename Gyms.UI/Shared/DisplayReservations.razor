@@ -1,8 +1,22 @@
-﻿<table class="table table-striped table-hover">
+﻿@using Gyms.UI.Services;
+@using Gyms.UI.Services.Interfaces;
+
+<style>
+    .btn-danger.fixed-color {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+</style>
+
+<table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>No.</th>
                 <th>Name</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -11,6 +25,7 @@
                 <tr>
                     <td>@x.index.ToString()</td>
                     <td>@x.value.Name @x.value.Surname</td>
+                    <button type="button" class="btn btn-danger fixed-color" @onclick="() => DeleteReservation(x.value.Id)">Delete</button>
                 </tr>
             }
         </tbody>
@@ -19,4 +34,16 @@
 @code {
     [Parameter]
     public IEnumerable<ReservationResponse> Reservations { get; set; }
+
+    [Parameter]
+    public IReservationsService ReservationsService { get; set; }
+
+    [Parameter]
+    public EventCallback OnReservationDeleted { get; set; }
+
+    public async Task DeleteReservation(int id)
+    {
+        await ReservationsService.DeleteReservationAsync(id);
+        await OnReservationDeleted.InvokeAsync();
+    }
 }

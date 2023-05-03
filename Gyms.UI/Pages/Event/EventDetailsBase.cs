@@ -47,7 +47,6 @@ namespace Gyms.UI.Pages.Event
             }
 
             await EventsService.UpdateEvent(Event.Id, eventRequest);
-            //NavigationManager.NavigateTo($"/events/{Id}");
             await OnInitializedAsync();
         }
 

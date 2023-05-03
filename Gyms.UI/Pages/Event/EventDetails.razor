@@ -40,5 +40,5 @@ else
 
 
     <h4>Event reservations:</h4>
-    <DisplayReservations Reservations=@EventReservations/>
+    <DisplayReservations Reservations=@EventReservations ReservationsService=@ReservationsService OnReservationDeleted="@OnInitializedAsync"/>
 }
