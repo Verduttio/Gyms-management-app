@@ -1,4 +1,5 @@
-﻿using Gyms.Models.Dtos.Responses;
+﻿using Gyms.Models.Dtos.Requests;
+using Gyms.Models.Dtos.Responses;
 
 namespace Gyms.UI.Services.Interfaces
 {
@@ -9,5 +10,6 @@ namespace Gyms.UI.Services.Interfaces
         Task<IEnumerable<EventResponse>> GetCoachEvents(int coachId);
         Task<IEnumerable<EventResponse>> GetClubEvents(int clubId);
         Task<EventResponse> DeleteEvent(int id);
+        Task<EventResponse> UpdateEvent(int id, EventRequest eventRequest);
     }
 }

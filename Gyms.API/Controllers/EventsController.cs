@@ -46,9 +46,12 @@ namespace Gyms.API.Controllers
 
         // PUT: api/Events/5
         [HttpPut("{id}")]
-        public async Task<Event> UpdateEventAsync(int id, EventRequest eventRequest)
+        public async Task<EventResponse> UpdateEventAsync(int id, EventRequest eventRequest)
         {
-            return await _eventsService.UpdateEventAsync(id, eventRequest);
+            Event @event = await _eventsService.UpdateEventAsync(id, eventRequest);
+            EventResponse? eventResponse = Event.MakeEventResponse(@event);
+
+            return eventResponse;
         }
 
         // DELETE: api/Events/5

@@ -1,4 +1,6 @@
-﻿namespace Gyms.Models.Dtos.Requests
+﻿using Gyms.Models.Dtos.Responses;
+
+namespace Gyms.Models.Dtos.Requests
 {
     public class EventRequest
     {
@@ -23,5 +25,21 @@
         public int ParticipantsNumber { get; set; } = 0;
 
         public bool Cancelled { get; set; } = false;
+
+        public EventRequest() { }
+
+        public EventRequest(EventResponse eventResponse) {
+            Date = eventResponse.Date;
+            Title = eventResponse.Title;
+            Day = eventResponse.Day;
+            Time = eventResponse.Time;
+            Duration = eventResponse.Duration;
+            ClubId = eventResponse.ClubId;
+            CoachId = eventResponse.CoachId;
+            ParticipantsLimit = eventResponse.ParticipantsLimit;
+            Regular = eventResponse.Regular;
+            ParticipantsNumber = eventResponse.ParticipantsNumber;
+            Cancelled = eventResponse.Cancelled;
+        }
     }
 }

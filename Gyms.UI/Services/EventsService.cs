@@ -78,5 +78,19 @@ namespace Gyms.UI.Services
                 throw new Exception("Error getting club events", ex);
             }
         }
+
+        public async Task<EventResponse> UpdateEvent(int id, EventRequest @event)
+        {
+            try
+            {
+                var response = await _httpClient.PutAsJsonAsync($"api/Events/{id}", @event);
+                var updatedEvent = await response.Content.ReadFromJsonAsync<EventResponse>();
+                return updatedEvent;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating event", ex);
+            }
+        }
     }
 }

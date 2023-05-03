@@ -25,6 +25,19 @@ namespace Gyms.API.Services.Validators
             }
         }
 
+        public async Task<bool> EventCancelled(int eventId)
+        {
+            Event @event = await _eventsService.GetEventAsync(eventId);
+            if(@event != null)
+            {
+                return @event.Cancelled;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public async Task IncrementReservationsNumber(int eventId)
         {
             await _eventsService.IncrementParticipantsNumber(eventId);

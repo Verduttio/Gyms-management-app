@@ -1,4 +1,5 @@
-﻿using Gyms.Models.Dtos.Responses;
+﻿using Gyms.Models.Dtos.Requests;
+using Gyms.Models.Dtos.Responses;
 using Gyms.UI.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
 
@@ -31,6 +32,23 @@ namespace Gyms.UI.Pages.Event
         {
             await EventsService.DeleteEvent(Event.Id);
             NavigationManager.NavigateTo("/events");
+        }
+
+        protected async Task ChangeCancelState()
+        {
+            EventRequest eventRequest = new EventRequest(Event);
+            if (Event.Cancelled)
+            {
+                eventRequest.Cancelled = false;
+            }
+            else
+            {
+                eventRequest.Cancelled = true;
+            }
+
+            await EventsService.UpdateEvent(Event.Id, eventRequest);
+            //NavigationManager.NavigateTo($"/events/{Id}");
+            await OnInitializedAsync();
         }
 
     }

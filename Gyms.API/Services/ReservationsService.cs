@@ -30,7 +30,7 @@ namespace Gyms.API.Services
         public async Task<Reservation?> AddReservationAsync(ReservationRequest reservationRequest)
         {
             Reservation reservation = new Reservation(reservationRequest);
-            if(await _reservationsValidator.IsFreePlace(reservation.EventId))
+            if(await _reservationsValidator.IsFreePlace(reservation.EventId) && !await _reservationsValidator.EventCancelled(reservation.EventId))
             {
                 await _reservationsValidator.IncrementReservationsNumber(reservation.EventId);
                 return await _reservationsRepository.AddReservationAsync(reservation);
