@@ -39,9 +39,12 @@ namespace Gyms.API.Controllers
 
         // POST: api/Events
         [HttpPost]
-        public async Task<Event> AddEventAsync(EventRequest eventRequest)
+        public async Task<EventResponse?> AddEventAsync(EventRequest eventRequest)
         {
-            return await _eventsService.AddEventAsync(eventRequest);
+            Event @event = await _eventsService.AddEventAsync(eventRequest);
+            EventResponse? eventResponse = Event.MakeEventResponse(@event);
+
+            return eventResponse;
         }
 
         // PUT: api/Events/5

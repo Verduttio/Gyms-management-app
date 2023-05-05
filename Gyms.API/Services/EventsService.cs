@@ -97,7 +97,7 @@ namespace Gyms.API.Services
         {
             @event.Date = DateOnly.Parse(eventRequest.Date);
             @event.Title = eventRequest.Title;
-            @event.Day = eventRequest.Day;
+            @event.Day = DateOnly.Parse(eventRequest.Date).DayOfWeek;
             @event.Time = TimeOnly.Parse(eventRequest.Time);
             @event.Duration = TimeSpan.Parse(eventRequest.Duration);
             @event.ClubId = eventRequest.ClubId;

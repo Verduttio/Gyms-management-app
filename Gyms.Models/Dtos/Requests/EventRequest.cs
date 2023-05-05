@@ -8,7 +8,7 @@ namespace Gyms.Models.Dtos.Requests
 
         public string Title { get; set; } = "";
 
-        public DayOfWeek Day { get; set; }
+        //public DayOfWeek Day { get; set; }
 
         public string Time { get; set; }
 
@@ -31,7 +31,6 @@ namespace Gyms.Models.Dtos.Requests
         public EventRequest(EventResponse eventResponse) {
             Date = eventResponse.Date;
             Title = eventResponse.Title;
-            Day = eventResponse.Day;
             Time = eventResponse.Time;
             Duration = eventResponse.Duration;
             ClubId = eventResponse.ClubId;

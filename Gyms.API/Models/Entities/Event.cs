@@ -53,7 +53,7 @@ namespace Gyms.API.Models.Entities
         {
             Date = DateOnly.Parse(eventRequest.Date);
             Title = eventRequest.Title;
-            Day = eventRequest.Day;
+            Day = DateOnly.Parse(eventRequest.Date).DayOfWeek;
             Time = TimeOnly.Parse(eventRequest.Time);
             Duration = TimeSpan.Parse(eventRequest.Duration);
             ClubId = eventRequest.ClubId;

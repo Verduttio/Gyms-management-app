@@ -92,5 +92,19 @@ namespace Gyms.UI.Services
                 throw new Exception("Error updating event", ex);
             }
         }
+
+        public async Task<EventResponse> AddEvent(EventRequest eventRequest)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync($"api/Events", eventRequest);
+                var eventResponse = await response.Content.ReadFromJsonAsync<EventResponse>();
+                return eventResponse;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding event", ex);
+            }
+        }
     }
 }
