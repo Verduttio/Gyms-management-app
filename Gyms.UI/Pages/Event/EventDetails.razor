@@ -34,9 +34,11 @@ else
           else {<button type="button" class="btn btn-success py-2" @onclick="ChangeCancelState">Restore event</button>}
             
         </div>
-      <div class="py-3 pl-2">
-        <button type="button" class="btn btn-primary py-2" onclick="location.href='/events/@Id/reserve'">Make a reservation</button>
-      </div>
+      @if(!Event.Cancelled) {
+          <div class="py-3 pl-2">
+            <button type="button" class="btn btn-primary py-2" onclick="location.href='/events/@Id/reserve'">Make a reservation</button>
+          </div>
+        }
     </div>
 
 

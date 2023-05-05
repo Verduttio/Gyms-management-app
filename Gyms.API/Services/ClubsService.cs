@@ -1,6 +1,7 @@
 ﻿using Gyms.Models.Dtos.Requests;
 using Gyms.API.Models.Entities;
 using Gyms.API.Repositories.Interfaces;
+using Gyms.API.Services.Validators;
 
 namespace Gyms.API.Services
 {
@@ -28,7 +29,14 @@ namespace Gyms.API.Services
         public async Task<Club> AddClubAsync(ClubRequest clubRequest)
         {
             Club club = new Club(clubRequest);
-            return await _clubsRepository.AddClubAsync(club);
+            if(TimeValidator.OpeningHoursCorrect(club.OpeningHours)) {
+                return await _clubsRepository.AddClubAsync(club);
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
         public async Task<Club> UpdateClubAsync(int id, ClubRequest clubRequest)

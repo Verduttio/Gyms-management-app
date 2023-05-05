@@ -32,7 +32,14 @@ namespace Gyms.API.Controllers
         public async Task<ClubResponse> GetClub(int id)
         {
             Club club = await _clubsService.GetClubAsync(id);
-            return club.GetClubResponseObject();
+            if(club != null)
+            {
+                return club.GetClubResponseObject();
+            } else
+            {
+                return null;
+            }
+            
         }
 
         // PUT: api/Clubs/5
@@ -40,7 +47,14 @@ namespace Gyms.API.Controllers
         public async Task<ClubResponse> PutClub(int id, ClubRequest clubRequest)
         {
             Club club = await _clubsService.UpdateClubAsync(id, clubRequest);
-            return club.GetClubResponseObject();
+            if (club != null)
+            {
+                return club.GetClubResponseObject();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // POST: api/Clubs
@@ -48,7 +62,14 @@ namespace Gyms.API.Controllers
         public async Task<ClubResponse> PostClub(ClubRequest clubRequest)
         {
             Club club = await _clubsService.AddClubAsync(clubRequest);
-            return club.GetClubResponseObject();
+            if (club != null)
+            {
+                return club.GetClubResponseObject();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // DELETE: api/Clubs/5
@@ -56,7 +77,14 @@ namespace Gyms.API.Controllers
         public async Task<ClubResponse> DeleteClub(int id)
         {
             Club club = await _clubsService.DeleteClubAsync(id);
-            return club.GetClubResponseObject();
+            if (club != null)
+            {
+                return club.GetClubResponseObject();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // GET: api/Clubs/5/OpeningHours
@@ -64,7 +92,14 @@ namespace Gyms.API.Controllers
         public async Task<OpeningHoursResponse> GetClubOpeningHours(int id)
         {
             OpeningHours openingHours = await _clubsService.GetOpeningHoursAsync(id);
-            return openingHours.GetOpeningHoursResponseObject();
+            if (openingHours != null)
+            {
+                return openingHours.GetOpeningHoursResponseObject();
+            }
+            else
+            {
+                return null;
+            }
         }
 
     }
