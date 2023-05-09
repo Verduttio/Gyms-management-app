@@ -22,7 +22,8 @@ namespace Gyms.UI.Services
             }
             catch (Exception ex)
             {
-                throw ex;
+                System.Diagnostics.Debug.WriteLine("Error getting clubs");
+                return null;
             }
         }
 
@@ -35,7 +36,8 @@ namespace Gyms.UI.Services
             }
             catch (Exception ex)
             {
-                throw ex;
+                System.Diagnostics.Debug.WriteLine("Error getting club");
+                return null;
             }
         }
 
@@ -48,21 +50,23 @@ namespace Gyms.UI.Services
             }
             catch (Exception ex)
             {
-                throw ex;
+                System.Diagnostics.Debug.WriteLine("Error getting club's opening hours");
+                return null;
             }
         }
 
-        public async Task<ClubResponse> AddClub(ClubRequest clubRequest)
+        public async Task<ClubResponse?> AddClub(ClubRequest clubRequest)
         {
             try
             {
                 var response = await _httpClient.PostAsJsonAsync("api/Clubs", clubRequest);
-                var club = await response.Content.ReadFromJsonAsync<ClubResponse>();
+                var club = await response.Content.ReadFromJsonAsync<ClubResponse?>();
                 return club;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error adding club", ex);
+                System.Diagnostics.Debug.WriteLine("Error adding club");
+                return null;
             }
         }
 
@@ -71,12 +75,13 @@ namespace Gyms.UI.Services
             try
             {
                 var response = await _httpClient.DeleteAsync($"api/Clubs/{id}");
-                var club = await response.Content.ReadFromJsonAsync<ClubResponse>();
+                var club = await response.Content.ReadFromJsonAsync<ClubResponse?>();
                 return club;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error deleting club", ex);
+                System.Diagnostics.Debug.WriteLine("Error deleting club");
+                return null;
             }
         }
     }

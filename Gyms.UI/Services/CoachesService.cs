@@ -22,7 +22,8 @@ namespace Gyms.UI.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Error getting coach", ex);
+                System.Diagnostics.Debug.WriteLine("Error getting coach");
+                return null;
             }
         }
 
@@ -35,7 +36,8 @@ namespace Gyms.UI.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Error getting coaches", ex);
+                System.Diagnostics.Debug.WriteLine("Error getting coaches");
+                return null;
             }
         }
 
@@ -44,12 +46,13 @@ namespace Gyms.UI.Services
             try
             {
                 var response = await _httpClient.PostAsJsonAsync("api/Coaches", coachRequest);
-                var coach = await response.Content.ReadFromJsonAsync<CoachResponse>();
+                var coach = await response.Content.ReadFromJsonAsync<CoachResponse?>();
                 return coach;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error adding coach", ex);
+                System.Diagnostics.Debug.WriteLine("Error adding coach");
+                return null;
             }
         }
 
@@ -58,12 +61,13 @@ namespace Gyms.UI.Services
             try
             {
                 var response = await _httpClient.DeleteAsync($"api/Coaches/{id}");
-                var coach = await response.Content.ReadFromJsonAsync<CoachResponse>();
+                var coach = await response.Content.ReadFromJsonAsync<CoachResponse?>();
                 return coach;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error deleting coach", ex);
+                System.Diagnostics.Debug.WriteLine("Error deleting coach");
+                return null;
             }
         }
     }

@@ -1,6 +1,8 @@
 ﻿using Gyms.Models.Dtos.Requests;
 using Gyms.Models.Dtos.Responses;
 using Gyms.UI.Services.Interfaces;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace Gyms.UI.Services
 {
@@ -8,6 +10,9 @@ namespace Gyms.UI.Services
     {
 
         private readonly HttpClient _httpClient;
+
+        [Inject]
+        public IJSRuntime JsRuntime { get; set; }
 
         public EventsService(HttpClient httpClient)
         {
@@ -23,7 +28,8 @@ namespace Gyms.UI.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Error getting event", ex);
+                System.Diagnostics.Debug.WriteLine("Error getting event");
+                return null;
             }
         }
 
@@ -36,7 +42,8 @@ namespace Gyms.UI.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Error getting events", ex);
+                System.Diagnostics.Debug.WriteLine("Error getting events");
+                return null;
             }
         }
         public async Task<IEnumerable<EventResponse>> GetCoachEvents(int coachId)
@@ -48,7 +55,8 @@ namespace Gyms.UI.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Error getting coach events", ex);
+                System.Diagnostics.Debug.WriteLine("Error getting coach events");
+                return null;
             }
         }
 
@@ -57,12 +65,13 @@ namespace Gyms.UI.Services
             try
             {
                 var response = await _httpClient.DeleteAsync($"api/Events/{id}");
-                var @event = await response.Content.ReadFromJsonAsync<EventResponse>();
+                var @event = await response.Content.ReadFromJsonAsync<EventResponse?>();
                 return @event;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error deleting event", ex);
+                System.Diagnostics.Debug.WriteLine("Error deleting event");
+                return null;
             }
         }
 
@@ -75,7 +84,8 @@ namespace Gyms.UI.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Error getting club events", ex);
+                System.Diagnostics.Debug.WriteLine("Error getting club's events");
+                return null;
             }
         }
 
@@ -84,12 +94,13 @@ namespace Gyms.UI.Services
             try
             {
                 var response = await _httpClient.PutAsJsonAsync($"api/Events/{id}", @event);
-                var updatedEvent = await response.Content.ReadFromJsonAsync<EventResponse>();
+                var updatedEvent = await response.Content.ReadFromJsonAsync<EventResponse?>();
                 return updatedEvent;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error updating event", ex);
+                System.Diagnostics.Debug.WriteLine("Error updating event");
+                return null;
             }
         }
 
@@ -98,12 +109,13 @@ namespace Gyms.UI.Services
             try
             {
                 var response = await _httpClient.PostAsJsonAsync($"api/Events", eventRequest);
-                var eventResponse = await response.Content.ReadFromJsonAsync<EventResponse>();
+                var eventResponse = await response.Content.ReadFromJsonAsync<EventResponse?>();
                 return eventResponse;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error adding event", ex);
+                System.Diagnostics.Debug.WriteLine("Error adding event");
+                return null;
             }
         }
     }

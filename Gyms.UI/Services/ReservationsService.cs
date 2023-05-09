@@ -18,12 +18,13 @@ namespace Gyms.UI.Services
             try
             {
                 var response = await _httpClient.PostAsJsonAsync("api/Reservations", reservationRequest);
-                var reservation = await response.Content.ReadFromJsonAsync<ReservationResponse>();
+                var reservation = await response.Content.ReadFromJsonAsync<ReservationResponse?>();
                 return reservation;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error adding reservation", ex);
+                System.Diagnostics.Debug.WriteLine("Error adding reservation");
+                return null;
             }
         }
         
@@ -32,12 +33,13 @@ namespace Gyms.UI.Services
             try
             {
                 var response = await _httpClient.DeleteAsync($"api/Reservations/{id}");
-                var reservation = await response.Content.ReadFromJsonAsync<ReservationResponse>();
+                var reservation = await response.Content.ReadFromJsonAsync<ReservationResponse?>();
                 return reservation;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error deleting reservation", ex);
+                System.Diagnostics.Debug.WriteLine("Error deleting reservation");
+                return null;
             }
         }
 
@@ -50,7 +52,8 @@ namespace Gyms.UI.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Error getting event's reservations", ex);
+                System.Diagnostics.Debug.WriteLine("Error getting event's reservations");
+                return null;
             }
         }
 
@@ -63,7 +66,8 @@ namespace Gyms.UI.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Error getting reservation", ex);
+                System.Diagnostics.Debug.WriteLine("Error getting reservation");
+                return null;
             }
         }
 
@@ -76,7 +80,8 @@ namespace Gyms.UI.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Error getting reservations", ex);
+                System.Diagnostics.Debug.WriteLine("Error adding reservations");
+                return null;
             }
         }
     }

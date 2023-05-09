@@ -1,6 +1,7 @@
 ﻿using Gyms.Models.Dtos.Requests;
 using Gyms.UI.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace Gyms.UI.Pages.Coach
 {
@@ -8,8 +9,13 @@ namespace Gyms.UI.Pages.Coach
     {
         [Inject]
         public ICoachesService CoachesService { get; set; }
+
         [Inject]
         public NavigationManager NavigationManager { get; set; }
+
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }
+
         public CoachRequest CoachRequest { get; set; }
         protected override void OnInitialized()
         {
@@ -18,7 +24,11 @@ namespace Gyms.UI.Pages.Coach
 
         public async Task AddCoach()
         {
-            await CoachesService.AddCoach(CoachRequest);
+            var response = await CoachesService.AddCoach(CoachRequest);
+            if (response == null)
+            {
+                await JSRuntime.InvokeAsync<object>("alert", "Incorrect data");
+            }
             NavigationManager.NavigateTo("/coaches");
         }
     }

@@ -51,17 +51,21 @@ namespace Gyms.API.Models.Entities
 
         public Event(EventRequest eventRequest)
         {
-            Date = DateOnly.Parse(eventRequest.Date);
-            Title = eventRequest.Title;
-            Day = DateOnly.Parse(eventRequest.Date).DayOfWeek;
-            Time = TimeOnly.Parse(eventRequest.Time);
-            Duration = TimeSpan.Parse(eventRequest.Duration);
-            ClubId = eventRequest.ClubId;
-            CoachId = eventRequest.CoachId;
-            ParticipantsLimit = eventRequest.ParticipantsLimit;
-            Regular = eventRequest.Regular;
-            ParticipantsNumber = eventRequest.ParticipantsNumber;
-            Cancelled = eventRequest.Cancelled;
+            try
+            {
+                Date = DateOnly.Parse(eventRequest.Date);
+                Title = eventRequest.Title;
+                Day = DateOnly.Parse(eventRequest.Date).DayOfWeek;
+                Time = TimeOnly.Parse(eventRequest.Time);
+                Duration = TimeSpan.Parse(eventRequest.Duration);
+                ClubId = eventRequest.ClubId;
+                CoachId = eventRequest.CoachId;
+                ParticipantsLimit = eventRequest.ParticipantsLimit;
+                Regular = eventRequest.Regular;
+                ParticipantsNumber = eventRequest.ParticipantsNumber;
+                Cancelled = eventRequest.Cancelled;
+            }
+            catch { }
         }
 
         public static EventResponse? MakeEventResponse(Event @event) 

@@ -1,6 +1,7 @@
 ﻿using Gyms.Models.Dtos.Requests;
 using Gyms.UI.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace Gyms.UI.Pages.Reservation
 {
@@ -15,6 +16,9 @@ namespace Gyms.UI.Pages.Reservation
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }   
+
         public ReservationRequest ReservationRequest { get; set; } = new ReservationRequest();
 
         protected override void OnInitialized()
@@ -25,7 +29,11 @@ namespace Gyms.UI.Pages.Reservation
 
         public async Task AddReservation()
         {
-            await ReservationService.AddReservation(ReservationRequest);
+            var response = await ReservationService.AddReservation(ReservationRequest);
+            if (response == null)
+            {
+                await JSRuntime.InvokeAsync<object>("alert", "Incorrect data");
+            }
             NavigationManager.NavigateTo($"/events/{Id}");
         }
     }

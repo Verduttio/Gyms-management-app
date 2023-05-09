@@ -1,6 +1,7 @@
 ﻿using Gyms.Models.Dtos.Requests;
 using Gyms.UI.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace Gyms.UI.Pages.Club
 {
@@ -12,6 +13,9 @@ namespace Gyms.UI.Pages.Club
         [Inject]
         public NavigationManager Navigation { get; set; }
 
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }
+
         public ClubRequest ClubRequest { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -21,7 +25,11 @@ namespace Gyms.UI.Pages.Club
 
         public async Task AddClub()
         {
-            await ClubsService.AddClub(ClubRequest);
+            var response = await ClubsService.AddClub(ClubRequest);
+            if (response == null)
+            {
+                await JSRuntime.InvokeAsync<object>("alert", "Incorrect data");
+            }
             Navigation.NavigateTo("/clubs");
         }
     }

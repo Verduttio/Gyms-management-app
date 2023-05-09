@@ -31,6 +31,11 @@ namespace Gyms.API.Services
         public async Task<Event?> AddEventAsync(EventRequest eventRequest)
         {
             Event @event = new Event(eventRequest);
+            if(!(await _eventsValidator.ClubExists(@event.ClubId) && await _eventsValidator.CoachExists(@event.CoachId)))
+            {
+                return null;
+            }
+
             IEnumerable<Event> coachEvents = (await GetEventsByCoachIdAsync(@event.CoachId));
             if (await _eventsValidator.EventInClubOpeningHours(@event.ClubId, @event.Day, @event.Time, @event.Duration) &&
                 _eventsValidator.CoachFree(coachEvents, @event.Date, @event.Time, @event.Duration))
