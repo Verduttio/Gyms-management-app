@@ -19,6 +19,8 @@ To run this project, you will need the following software:
   6. Run the project by clicking the "Start" button.
   7. [Optional] You will probably have to configure <Multiple Startup Projects> option next to the "Start" button to run web api and blazor together.
   
-## Screenshots
-![Club](https://github.com/Verduttio/Gyms-management-app/assets/72033031/8ec755d8-6bc1-46a7-ba8d-edd3728ebb16)
-![Event](https://github.com/Verduttio/Gyms-management-app/assets/72033031/06145adc-3feb-47ed-b08e-7b0932dcfb03)
+
+Screenshots
+![Club](https://github.com/Verduttio/Gyms-management-app/assets/72033031/ef74cbca-5d42-4f65-a85b-bc750e00bdf3)
+![Event](https://github.com/Verduttio/Gyms-management-app/assets/72033031/24397fc0-b3cf-47f2-acbe-99846f7237e3)
+
